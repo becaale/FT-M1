@@ -17,7 +17,7 @@ function DecimalABinario(num) {
   let numDecimal = num;
   let numBinario = [];
 
-  while (numDecimal>0){
+  while (numDecimal>=0){
     numBinario.push(numDecimal%2)
     numDecimal = Math.floor(numDecimal / 2)
   }
