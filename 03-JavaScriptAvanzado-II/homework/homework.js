@@ -6,7 +6,8 @@ function counter() {
   /*
   Ejercicio 1
 
-  La función counter debe retornar otra función. Esta función retornada debe actuar como un contador, retornando un valor numérico que empieza en 1 e incrementa con cada invocación.
+  La función counter debe retornar otra función. Esta función retornada debe actuar como un contador, retornando un valor numérico que empieza en 1 
+  e incrementa con cada invocación.
 
   Ejemplo:
   const nuevoContador = counter()
@@ -19,6 +20,12 @@ function counter() {
   otroContador()      // 2
   otroContador()      // 3
    */
+  let contador=0;
+  return function(){
+    //contador++;
+    return ++contador;
+  }
+
 }
 
 function cacheFunction(cb) {
@@ -41,6 +48,15 @@ function cacheFunction(cb) {
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) 
 
   */
+ let cache = {};
+return function(arg){
+  if (cache.hasOwnProperty(arg)){
+    return cache[arg];
+  } else {
+    cache[arg] = cb(arg);
+    return cache[arg];
+  }
+}
 }
 
 // Bind
