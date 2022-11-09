@@ -152,7 +152,7 @@ console.log(obj.prop.getFullname()); //'Aurelio De Rosa'   el this hace referenc
 
 var test = obj.prop.getFullname;
 
-console.log(test()); // devuelve la funcion
+console.log(test()); // "Juan Perez"   test toma la funcion de getFullname pero ejecuta el this en global
 ```
 
 ### Event loop
@@ -171,5 +171,5 @@ function printing() {
   console.log(4);
 }
 
-printing(); // 1 3 4 2     el 2 se retrasa porque tiene un timeout  // 1 4 3 2 por lo visto el 3 tambien devido a que ingresa en una funcion
+printing();   // 1 4 3 2  el 2 se retrasa porque tiene un timeout, por lo visto el 3 tambien devido a que ingresa en una funcion
 ```
