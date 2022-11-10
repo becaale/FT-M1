@@ -17,11 +17,16 @@ Como ejercicio adicional y completamente opcional, al terminar de resolver este 
 */
 
 function nFactorial(n) {
-  if (n < 0 || n === 1 || n === 0) return 1;
+
+  if (n < 2) return 1;
   return n * nFactorial(n - 1);
 
 
-
+/*   let facto=1;
+  for (let i = n; i > 0; i--) {
+    facto = facto * i;    
+  }
+  return facto; */
 }
 
 
