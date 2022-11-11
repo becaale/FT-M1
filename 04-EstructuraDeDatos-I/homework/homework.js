@@ -17,26 +17,25 @@ Como ejercicio adicional y completamente opcional, al terminar de resolver este 
 */
 
 function nFactorial(n) {
-
+  if (n < 0) return 0;
   if (n < 2) return 1;
   return n * nFactorial(n - 1);
 
-
-/*   let facto=1;
+  /*   let facto=1;
   for (let i = n; i > 0; i--) {
     facto = facto * i;    
   }
   return facto; */
 }
 
-
 function nFibonacci(n) {
+  if (n < 0) return false;
   if (n < 2) {
     return n;
   } else {
-    return nFibonacci(n - 1) + nFibonacci(n - 2)
+    return nFibonacci(n - 1) + nFibonacci(n - 2);
   }
- 
+
   /* 
   let fibo = [];
   for (let i = 0; i <= n; i++) {
@@ -59,15 +58,18 @@ Pueden utilizar class o función constructora.
 
 function Queue() {
   this.q = [];
-  this.enqueue = function (arg) {
+ /*  this.enqueue = function (arg) {
     this.q.push(arg);
   };
+  ///opcion sin prototype
   this.dequeue = function () {
+    if (this.q.length===0) {return }
     return this.q.shift();
   };
   this.size = function () {
     return this.q.length;
-  };
+  }; */
+  ////////con clases
   /*  class fifo {
     constructor() {
       this.q = [];
@@ -86,6 +88,18 @@ function Queue() {
   return fifo;
  */
 }
+
+Queue.prototype.enqueue = function (arg) {
+  this.q.push(arg);
+};
+Queue.prototype.dequeue = function () {
+  if (this.q.length===0) {return }
+  return this.q.shift();
+};
+Queue.prototype.size = function () {
+  return this.q.length;
+};
+
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
