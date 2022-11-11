@@ -11,9 +11,82 @@ Implementar la clase LinkedList, definiendo los siguientes métodos:
   En caso de que la búsqueda no arroje resultados, search debe retornar null.
 */
 
-function LinkedList() {}
+function LinkedList() {
+  this.head = null;
+}
 
-function Node(value) {}
+LinkedList.prototype.add = function (arg) {
+  //creo un nodo nuevo
+  let newNode = new Node(arg);
+  //cargo el head del nodo primario
+  let currentNode = this.head;
+  //si el head es null no hay nodo primario entonces le cargo el nuevo nodo
+  if (currentNode === null) {
+    this.head = newNode;
+    return true;
+  }
+  //recorro la lista hasta su ultima posisicion
+  while (currentNode.next) {
+    currentNode = currentNode.next;
+  }
+  currentNode.next = newNode;
+};
+
+LinkedList.prototype.remove = function () {
+  // asigno el puntero
+  let currentNode = this.head;
+  //si la lista esta vacia retorno null
+  if (currentNode === null) {
+    return null;
+  }
+  //si contiene un solo elemento borro el head y retorno el valor del elemento current
+  if (currentNode.next === null) {
+    this.head = null;
+    return currentNode.value;
+  }
+  //como tienen mas de un elemento
+  //recorro la lista hasta su ANTE ultima posisicion
+  while (currentNode.next.next) {
+    currentNode = currentNode.next;
+  }
+  //guardo el ultimo nodo antes de borrar el puntero hacia el
+  let nodoReturn = currentNode.next;
+  //borro el nodo
+  currentNode.next = null;
+  //retorno el nodo eliminado
+  return nodoReturn.value;
+};
+
+LinkedList.prototype.search = function (aBuscar) {
+  // asigno el puntero
+  let currentNode = this.head;
+  //si la lista esta vacia retorno null
+  if (currentNode === null) {
+    return null;
+  }
+  //recorro la lista
+  while (currentNode) {
+    //detectar si arg es CB o valor
+    if (typeof aBuscar === "function") {
+      if (aBuscar(currentNode.value)) {
+        return currentNode.value;
+      }
+    } else {
+      if (currentNode.value === aBuscar) {
+        return currentNode.value;
+      }
+    }
+    //si no encontro nada paso al siguiente
+    currentNode = currentNode.next;
+  }
+  //si no encuentra nada retorno null
+  return null;
+};
+
+function Node(data) {
+  this.value = data;
+  this.next = null;
+}
 
 /*
 Implementar la clase HashTable.
@@ -30,7 +103,10 @@ La clase debe tener los siguientes métodos:
 Ejemplo: supongamos que quiero guardar {instructora: 'Ani'} en la tabla. Primero puedo chequear, con hasKey, si ya hay algo en la tabla con el nombre 'instructora'; luego, invocando set('instructora', 'Ani'), se almacenará el par clave-valor en un bucket específico (determinado al hashear la clave)
 */
 
-function HashTable() {}
+function HashTable() {
+  this.bucket = {};
+  this.numBuckets = 35;
+}
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
