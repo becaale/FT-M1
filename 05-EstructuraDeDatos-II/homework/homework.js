@@ -108,6 +108,49 @@ function HashTable() {
   this.numBuckets = 35;
 }
 
+HashTable.prototype.hash = function (valor) {
+  if (typeof valor !== "string") {
+    throw new TypeError('Keys must be strings');
+  }
+  let sumChar = 0;
+  for (let i = 0; i < valor.length; i++) {
+    sumChar += valor.charCodeAt(i);
+  }
+  let hash = sumChar % this.numBuckets;
+  return hash;
+};
+
+HashTable.prototype.set = function (clave, valor) {
+  let key = this.hash2(clave);
+  //if (this.bucket.hasOwnProperty(key)){return null;}
+  this.bucket[key] = valor;
+};
+
+HashTable.prototype.get = function (clave) {
+  return this.bucket[this.hash2(clave)];
+};
+
+HashTable.prototype.hasKey = function (clave) {
+  return this.bucket.hasOwnProperty(this.hash2(clave));
+};
+
+HashTable.prototype.hash2 = function (valor) {
+  if (typeof valor !== "string") {
+    throw new TypeError('Keys must be strings');
+  }
+  let sumChar = 0;
+  for (let i = 1; i < valor.length; i++) {
+    sumChar += valor.charCodeAt(i);
+  }
+  sumChar =
+    valor.charCodeAt(0) +
+    "" +
+    sumChar +
+    "" +
+    valor.charCodeAt(valor.length - 1);
+  let hash = sumChar % this.numBuckets;
+  return hash;
+};
 // No modifiquen nada debajo de esta linea
 // --------------------------------
 
