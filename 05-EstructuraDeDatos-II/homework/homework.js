@@ -131,7 +131,7 @@ HashTable.prototype.get = function (clave) {
 };
 
 HashTable.prototype.hasKey = function (clave) {
-  return this.bucket.hasOwnProperty(this.hash2(clave));
+  return this.bucket.hasOwnProperty(this.hash2(clave)); 
 };
 
 HashTable.prototype.hash2 = function (valor) {
