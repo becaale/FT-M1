@@ -18,7 +18,16 @@ function BinarySearchTree(value) {
 }
 
 BinarySearchTree.prototype.size = function () {
-  let left = 0;
+  let count = 0;
+  if (this.left !== null) {
+    count += this.left.size();
+  }
+  if (this.right !== null) {
+    count += this.right.size();
+  }
+  return 1 + count;
+
+  /* let left = 0;
   let right = 0;
   if (this.left !== null) {
     left = this.left.size();
@@ -26,7 +35,7 @@ BinarySearchTree.prototype.size = function () {
   if (this.right !== null) {
     right = this.right.size();
   }
-  return 1 + left + right;
+  return 1 + left + right; */
 };
 
 BinarySearchTree.prototype.insert = function (value) {
