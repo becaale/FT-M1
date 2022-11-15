@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 // No cambies los nombres de las funciones.
 
 function factorear(num) {
@@ -7,17 +7,20 @@ function factorear(num) {
   // Ej: factorear(180) --> [1, 2, 2, 3, 3, 5] Ya que 1x2x2x3x3x5 = 180 y son todos números primos
   // Tu código:
 
-  const arrPrimos = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101];
+  const arrPrimos = [
+    2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
+    73, 79, 83, 89, 97, 101,
+  ];
   let arrFact = [1];
   let i = 0;
 
   while (i < arrPrimos.length) {
-    if(num%arrPrimos[i] === 0){
+    if (num % arrPrimos[i] === 0) {
       arrFact.push(arrPrimos[i]);
-      num = num / arrPrimos[i]
+      num = num / arrPrimos[i];
     } else {
-      i++
-    }    
+      i++;
+    }
   }
   return arrFact;
 }
@@ -27,35 +30,39 @@ function bubbleSort(array) {
   // el array recibido como parámetro
   // Devolver el array ordenado resultante
   // Tu código:
-  for (let i = 0; i < array.length; i++) {
-    for (let j = 0; j < array.length; j++) {
-      const element = array[j];
-      
+
+  let itero = true;
+  while (itero === true) {
+    itero = false
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] > array[i + 1]) {
+        let temp = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = temp;
+        itero=true
+      }
     }
-    const element = array[i];
-    
   }
-
+  return array;
 }
-
 
 function insertionSort(array) {
   // Implementar el método conocido como insertionSort para ordenar de menor a mayor
   // el array recibido como parámetro utilizando arreglos
   // Devolver el array ordenado resultante
   // Tu código:
-
+  for (let i = 0; i < array.length; i++) {
+    
+    
+  }
 }
-
 
 function selectionSort(array) {
   // Implementar el método conocido como selectionSort para ordenar de menor a mayor
   // el array recibido como parámetro utilizando dos arreglos
   // Devolver el array ordenado resultante
   // Tu código:
-
 }
-
 
 // No modificar nada debajo de esta línea
 // --------------------------------
