@@ -33,13 +33,13 @@ function bubbleSort(array) {
 
   let itero = true;
   while (itero === true) {
-    itero = false
+    itero = false;
     for (let i = 0; i < array.length; i++) {
       if (array[i] > array[i + 1]) {
         let temp = array[i];
         array[i] = array[i + 1];
         array[i + 1] = temp;
-        itero=true
+        itero = true;
       }
     }
   }
@@ -52,9 +52,17 @@ function insertionSort(array) {
   // Devolver el array ordenado resultante
   // Tu código:
   for (let i = 0; i < array.length; i++) {
-    
-    
+    for (let h = i; h >= 0; h--) {
+      if (array[h] < array[h - 1]) {
+        let temp = array[h - 1];
+        array[h - 1] = array[h];
+        array[h] = temp;
+      } else {
+        break;
+      }
+    }
   }
+  return array;
 }
 
 function selectionSort(array) {
