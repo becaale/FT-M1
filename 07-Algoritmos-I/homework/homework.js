@@ -7,10 +7,8 @@ function factorear(num) {
   // Ej: factorear(180) --> [1, 2, 2, 3, 3, 5] Ya que 1x2x2x3x3x5 = 180 y son todos números primos
   // Tu código:
 
-  const arrPrimos = [
-    2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
-    73, 79, 83, 89, 97, 101,
-  ];
+  const arrPrimos = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
+    73, 79, 83, 89, 97, 101];
   let arrFact = [1];
   let i = 0;
 
