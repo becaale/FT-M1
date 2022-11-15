@@ -11,39 +11,108 @@
   El ábrol utilizado para hacer los tests se encuentra representado en la imagen bst.png dentro del directorio homework.
 */
 
-function BinarySearchTree() {
-  this.head = null;
+function BinarySearchTree(value) {
   this.left = null;
-  this.rigth = null;
-  this.value = null;
-  this.length = 0;
+  this.right = null;
+  this.value = value;
 }
 
 BinarySearchTree.prototype.size = function () {
-  return this.length;
+  let left = 0;
+  let right = 0;
+  if (this.left !== null) {
+    left = this.left.size();
+  }
+  if (this.right !== null) {
+    right = this.right.size();
+  }
+  return 1 + left + right;
 };
 
 BinarySearchTree.prototype.insert = function (value) {
   if (this.value > value) {
-    if (!!this.left) {
+    if (this.left === null) {
       this.left = new BinarySearchTree(value);
     } else {
       this.left.insert(value);
     }
   } else {
-    if (!!this.rigth) {
-      this.rigth = new BinarySearchTree(value);
+    if (this.right === null) {
+      this.right = new BinarySearchTree(value);
     } else {
-      this.rigth.insert(value);
+      this.right.insert(value);
+    }
+  }
+};
+
+BinarySearchTree.prototype.contains = function (value) {
+  if (this.value === value) {
+    return true;
+  }
+
+  if (this.value < value) {
+    if (this.right === null) {
+      return false;
+    } else {
+      return this.right.contains(value);
     }
   }
 
-  this.length++;
+  if (this.value > value) {
+    if (this.left === null) {
+      return false;
+    } else {
+      return this.left.contains(value);
+    }
+  }
+
+  return false;
+
+  /*   let left = false;
+  let right = false;
+  let nodo = false;
+
+  if (this.left !== null && this.value > value) {
+    left = this.left.contains(value);
+  }
+
+  if (this.right !== null && this.value < value) {
+    right = this.right.contains(value);
+  }
+
+  if (this.value === value) {
+    nodo = true;
+  }
+
+  return nodo || left || right;  */
 };
 
-BinarySearchTree.prototype.contains = function () {};
-BinarySearchTree.prototype.depthFirstForEach = function () {};
-BinarySearchTree.prototype.breadthFirstForEach = function () {};
+BinarySearchTree.prototype.depthFirstForEach = function (cb, order) {
+  /* 
+  'in-order' left - root - right
+  'pre-order' root - left - right
+  'post-order' left - right - root
+  */
+
+  if (order === "pre-order") cb(this.value);
+
+  if (this.left !== null) this.left.depthFirstForEach(cb, order);
+
+  if (order !== "pre-order" && order !== "post-order") cb(this.value);
+
+  if (this.right !== null) this.right.depthFirstForEach(cb, order);
+
+  if (order === "post-order") cb(this.value);
+};
+
+BinarySearchTree.prototype.breadthFirstForEach = function (cb, fifo = []) {
+  cb(this.value);
+
+  if (this.left !== null) fifo.push(this.left);
+  if (this.right !== null) fifo.push(this.right);
+
+  if (fifo.length > 0) fifo.shift().breadthFirstForEach(cb, fifo);
+};
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
