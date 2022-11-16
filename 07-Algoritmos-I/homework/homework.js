@@ -12,7 +12,7 @@ function factorear(num) {
   let arrFact = [1];
   let i = 0;
 
-  while (i < arrPrimos.length) {
+  while (num!==1) {
     if (num % arrPrimos[i] === 0) {
       arrFact.push(arrPrimos[i]);
       num = num / arrPrimos[i];
@@ -29,15 +29,16 @@ function bubbleSort(array) {
   // Devolver el array ordenado resultante
   // Tu código:
 
-  let itero = true;
-  while (itero === true) {
-    itero = false;
+  let changed = true;
+  while (changed === true) {
+    changed = false;
     for (let i = 0; i < array.length; i++) {
       if (array[i] > array[i + 1]) {
         let temp = array[i];
         array[i] = array[i + 1];
         array[i + 1] = temp;
-        itero = true;
+        changed = true;
+        //[array[i]+array[i+1]]=[array[i+1]+array[i]]
       }
     }
   }
